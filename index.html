@@ -1,353 +1,271 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DianisPro 2.0 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación de Boda - Ulises y Diana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
-      background-size: cover;
+      background: #fffaf5;
       color: #333;
       overflow-x: hidden;
     }
-    #inicio {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: rgba(255, 245, 235, 0.9);
-    }
-    #inicio h1 {
-      font-size: 2.5em;
-      color: #b30059;
-      margin-bottom: 20px;
-    }
-    #inicio button {
-      background-color: #ffb6c1;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border-radius: 30px;
-      cursor: pointer;
+    header {
+      background-image: url('https://cdn0.bodas.com.mx/article-vendor/3443/3_2/1280/jpg/analois-photoshoot-0055_5_193443-164815363528699.jpeg');
+      background-size: cover;
+      background-position: center;
       color: white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4em;
+      opacity: 0;
+      animation: fadeInUp 2s ease forwards;
+      animation-delay: 0.5s;
+    }
+    header p {
+      font-size: 1.5em;
+      opacity: 0;
+      animation: fadeInUp 2s ease forwards;
+      animation-delay: 1s;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-in-out;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .countdown {
+      font-size: 1.8em;
+      background: #ffebee;
+      padding: 25px;
+      margin: 30px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .frase {
+      font-style: italic;
+      text-align: center;
+      margin: 20px 40px;
+      font-size: 1.4em;
+      color: #c2185b;
+    }
+    .btn {
+      background-color: #e91e63;
+      color: white;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 12px auto;
+      display: inline-block;
       transition: background 0.3s;
     }
-    #inicio button:hover { background-color: #ff99aa; }
-
-    #contenido {
-      display: none;
-      padding: 20px;
-      background-color: rgba(255,255,255,0.95);
-      min-height: 100vh;
+    .btn:hover {
+      background-color: #ad1457;
     }
-    .section-title {
-      font-size: 1.8em;
-      color: #b30059;
-      margin: 30px 0 20px;
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
       text-align: center;
     }
-    .message-block {
-      background: #fff7fb;
-      padding: 15px 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-      margin-bottom: 15px;
-      font-size: 1.1em;
-    }
-    .verse {
-      background: #fef4f7;
-      border-left: 5px solid #ff99cc;
-      padding: 15px;
-      font-style: italic;
-      margin: 20px 0;
-      font-size: 1.1em;
-    }
-    .flip-gallery {
+    .carousel {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
-    }
-    .flip-card {
-      width: 90%;
-      max-width: 400px;
-      height: 250px;
-      perspective: 1000px;
-    }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-    }
-    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-    }
-    .flip-card-front img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .flip-card-back {
-      background-color: #fff0f5;
-      color: #d63384;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.2em;
-      padding: 20px;
-      transform: rotateY(180deg);
-      text-align: center;
-    }
-    .timeline {
+      height: 320px;
       position: relative;
-      padding-left: 20px;
-      border-left: 3px solid #ffb3cc;
     }
-    .timeline-event { margin-bottom: 30px; }
-    .timeline-event h4 { margin: 0; color: #d63384; }
-    .poem {
-      background: #fff4f7;
-      padding: 20px;
+    .carousel img {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 20px;
       border-radius: 15px;
-      font-style: italic;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-      line-height: 1.6;
-      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.5s ease;
+    }
+    @keyframes scrollImages {
+      0% { transform: translateY(0); }
+      25% { transform: translateY(-100%); }
+      50% { transform: translateY(-200%); }
+      75% { transform: translateY(-300%); }
+      100% { transform: translateY(0); }
+    }
+    .carousel-inner {
+      display: flex;
+      flex-direction: column;
+      animation: scrollImages 20s infinite;
+    }
+    form input, form textarea {
+      width: 90%;
+      max-width: 450px;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
     }
     footer {
-      text-align: center;
-      margin: 40px 0;
-      font-size: 0.9em;
-      color: #777;
-    }
-    audio { display: none; }
-
-    /* Preguntas chistosas */
-    .question-block {
-      background-color: #fff0f5;
-      border: 2px dashed #ff80ab;
-      padding: 15px;
-      font-size: 1.1em;
-      border-radius: 15px;
-      cursor: default;
-      width: 90%;
-      max-width: 420px;
-      text-align: left;
-      transition: background 0.3s;
-      margin-bottom: 10px;
-    }
-    .question-buttons {
-      margin-top: 10px;
-      display: flex;
-      gap: 15px;
-    }
-    .question-buttons button {
-      background-color: #ff80ab;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
+      background: #f06292;
+      padding: 30px;
       color: white;
-      font-weight: 600;
-      cursor: pointer;
-      flex: 1;
-      transition: background-color 0.3s;
+      text-align: center;
+      font-size: 1.1em;
     }
-    .question-buttons button:hover {
-      background-color: #ff4d88;
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
 
-  <!-- Música de fondo -->
-  <audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
-    Tu navegador no soporta audio.
-  </audio>
+<header>
+  <h1>Diana & Ulises</h1>
+  <p>¡Nos casamos! 20 de Julio 2025</p>
+</header>
 
-  <!-- Pantalla de bienvenida -->
-  <div id="inicio">
-    <h1>Para ti, muñeca 💌</h1>
-    <button onclick="mostrarContenido()">Haz clic aquí</button>
+<div class="countdown fade-section" id="countdown"></div>
+<p class="frase fade-section">"El amor se compone de una sola alma que habita en dos cuerpos." - Aristóteles</p>
+<p class="frase fade-section">"Donde hay amor, hay vida." - Mahatma Gandhi</p>
+
+<section class="section fade-section">
+  <h2>Detalles del Evento</h2>
+  <p><strong>Ceremonia:</strong> Parroquia Santa María, 6:00 PM</p>
+  <p><strong>Recepción:</strong> Jardín Las Rosas, 8:00 PM</p>
+  <a class="btn" href="https://maps.google.com/?q=Parroquia+Santa+Maria" target="_blank">Ver Iglesia en Maps</a>
+  <a class="btn" href="https://maps.google.com/?q=Jardin+Las+Rosas" target="_blank">Ver Recepción en Maps</a>
+</section>
+
+<section class="section fade-section">
+  <h2>Confirma tu asistencia</h2>
+  <form onsubmit="return enviarFormulario(event)">
+    <input type="text" name="nombre" placeholder="Tu nombre" required><br>
+    <textarea name="mensaje" placeholder="Déjanos un mensaje especial..."></textarea><br>
+    <input type="submit" value="Confirmar Asistencia" class="btn">
+  </form>
+  <p id="respuesta"></p>
+</section>
+
+<section class="section fade-section">
+  <h2>Momentos que queremos compartir</h2>
+  <div class="carousel">
+    <div class="carousel-inner">
+      <img src="https://cdn0.bodas.net/article-vendor/45446/3_2/960/jpg/ec-228_1_45446-168966401847248.jpeg" alt="Momentos">
+      <img src="https://admin.vsd.mx/wp-content/uploads/2023/02/Gui%CC%81a-de-Bodas-de-Quere%CC%81taro-El-Gran-Di%CC%81a-2023.jpg" alt="Pareja">
+      <img src="https://image-tc.galaxy.tf/wijpeg-3lujebfrl6ak3gtqcz3gs0ng/6-weddings-result.jpg?width=2500" alt="Amor">
+      <img src="https://img.freepik.com/foto-gratis/anillos-bodas-oro-rosa-blanca-ramo-boda_8353-10467.jpg?semt=ais_hybrid&w=740" alt="Recuerdo">
+    </div>
   </div>
+</section>
 
-  <!-- Contenido principal -->
-  <div id="contenido">
-    <section>
-      <h2 class="section-title">💖 Mensajes para ti</h2>
-      <div class="message-block">Eres la obra más hermosa de Dios y hoy floreces con su amor.</div>
-      <div class="message-block">Estoy tan orgulloso de ti por este paso eterno y valiente.</div>
-      <div class="message-block">Tu sonrisa ilumina cada rincón de mi corazón y mi vida.</div>
-      <div class="message-block">Eres mi inspiración diaria, mi fuerza, mi compañera y mi amor.</div>
-      <div class="message-block">Hoy nace una nueva tú: llena de fe, gracia y propósito eterno.</div>
-    </section>
+<audio id="musica" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_30e00b5a29.mp3?filename=wedding-march-10841.mp3" type="audio/mpeg">
+  Tu navegador no soporta el audio.
+</audio>
 
-    <section>
-      <h2 class="section-title">📖 Versículos que te guían</h2>
-      <div class="verse">
-        “De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas.” – 2 Corintios 5:17
-      </div>
-      <div class="verse">
-        “El Señor te bendiga y te guarde; el Señor haga resplandecer su rostro sobre ti...” – Números 6:24-25
-      </div>
-      <div class="verse">
-        “Ella está vestida de fuerza y dignidad, y se ríe sin temor al futuro.” – Proverbios 31:25
-      </div>
-      <div class="verse">
-        “Confía en el Señor con todo tu corazón, y no te apoyes en tu propia prudencia.” – Proverbios 3:5
-      </div>
-    </section>
+<button class="audio-control" onclick="toggleAudio()">🔊</button>
 
-    <section>
-      <h2 class="section-title">📸 Galería con Mensajes</h2>
-      <div class="flip-gallery">
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="https://www.camsvi.com.mx/wp-content/uploads/2016/10/jesusteabraza.jpg" alt="Foto 1">
-            </div>
-            <div class="flip-card-back">Eres mi flor más hermosa 🌸</div>
-          </div>
-        </div>
+<footer class="fade-section">
+  <p>Con amor, Diana & Ulises ❤️ Gracias por ser parte de nuestra historia</p>
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="https://i.pinimg.com/564x/62/06/01/620601e23ffe7d37f50e203f3a47a7e2.jpg" alt="Foto 2">
-            </div>
-            <div class="flip-card-back">Eres luz en mi camino ✨</div>
-          </div>
-        </div>
+  <section class="section fade-section">
+  <h2>¿Qué tanto conoces a los novios?</h2>
+  <p>¡Juega y pon a prueba tus conocimientos sobre Diana y Ulises!</p>
+  <a class="btn" href="juego.html">Ir al Juego 🎲</a>
+</section>
+</footer>
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="https://i.pinimg.com/1200x/4c/3f/d0/4c3fd0e48269cc13cec2d3e23ffa005f.jpg" alt="Foto 3">
-            </div>
-            <div class="flip-card-back">Con Jesús en tu corazón, todo es posible ❤️</div>
-          </div>
-        </div>
+<script>
+  const countdown = document.getElementById('countdown');
+  const fechaEvento = new Date("Jul 20, 2025 18:00:00").getTime();
+  const timer = setInterval(() => {
+    const ahora = new Date().getTime();
+    const distancia = fechaEvento - ahora;
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="https://i.pinimg.com/736x/ec/70/3a/ec703a00be35f2e1241246d588f41805.jpg" alt="Foto 4">
-            </div>
-            <div class="flip-card-back">Tu sonrisa ilumina más que mil estrellas ⭐</div>
-          </div>
-        </div>
+    countdown.innerHTML = `Faltan ${dias} días, ${horas}h ${minutos}m ${segundos}s`;
 
-        <div class="flip-card" onclick="this.classList.toggle('flipped')">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_5-KtfoGxxdEbZlODiU0NTikkrWm7degJ4yFk-Rx2lW2tEmoyochZAHyKskGykqIdAXQ&usqp=CAU" alt="Foto 5">
-            </div>
-            <div class="flip-card-back">Antes eras Dianis, ahora DianisPro 2.0 🚀</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-title">🎉 ¿Cambiaste realmente? Juego divertido</h2>
-
-      <div class="question-block">
-        ¿Ahora oras antes de comer?
-        <div class="question-buttons">
-          <button onclick="respuestaPregunta(1, true)">Sí</button>
-          <button onclick="respuestaPregunta(1, false)">No</button>
-        </div>
-      </div>
-
-      <div class="question-block">
-        ¿Ya no te enojas tan rápido?
-        <div class="question-buttons">
-          <button onclick="respuestaPregunta(2, true)">Sí</button>
-          <button onclick="respuestaPregunta(2, false)">No</button>
-        </div>
-      </div>
-
-      <div class="question-block">
-        ¿Perdonas más fácil ahora?
-        <div class="question-buttons">
-          <button onclick="respuestaPregunta(3, true)">Sí</button>
-          <button onclick="respuestaPregunta(3, false)">No</button>
-        </div>
-      </div>
-
-      <div class="question-block">
-        ¿Cantas en la iglesia sin miedo?
-        <div class="question-buttons">
-          <button onclick="respuestaPregunta(4, true)">Sí</button>
-          <button onclick="respuestaPregunta(4, false)">No</button>
-        </div>
-      </div>
-
-      <div class="question-block">
-        ¿Crees que eres DianisPro 2.0?
-        <div class="question-buttons">
-          <button onclick="respuestaPregunta(5, true)">Sí</button>
-          <button onclick="respuestaPregunta(5, false)">No</button>
-        </div>
-      </div>
-
-    </section>
-
-    <footer>
-      Creado con amor eterno 💌<br>
-      Por quien te ama y admira cada día.
-    </footer>
-  </div>
-
-  <script>
-    function mostrarContenido(){
-      document.getElementById("inicio").style.display = "none";
-      document.getElementById("contenido").style.display = "block";
+    if (distancia < 0) {
+      clearInterval(timer);
+      countdown.innerHTML = "¡Ya comenzó!";
     }
+  }, 1000);
 
-    // Mensajes divertidos para respuestas
-    const respuestas = {
-      1: {
-        true: "¡Muy bien! La oración antes del alimento es bendición directa 😇🙏",
-        false: "Ya sabía que eras impaciente, pero aun así te amo 😂❤️"
-      },
-      2: {
-        true: "¡Dios te bendiga en serio! Eso se siente en el aire 😆✨",
-        false: "Dudoso... pero bueno, el amor siempre perdona 😜💕"
-      },
-      3: {
-        true: "¡Perdonaste! Eso sí que es santo progreso 👏😇",
-        false: "No te creo, pero igual te quiero igual 🤣"
-      },
-      4: {
-        true: "¡Alabanza con todo el corazón! Así me gusta 🎤🔥",
-        false: "Murmullos... bueno, todos empezamos en algún lugar 😅"
-      },
-      5: {
-        true: "¡Claro que sí! Felicidades DianisPro 2.0 🎉🎊",
-        false: "Paciencia, que lo mejor está por venir 💖"
+  function enviarFormulario(event) {
+    event.preventDefault();
+    document.getElementById('respuesta').innerText = "Gracias por confirmar tu asistencia 💌";
+  }
+
+  function toggleAudio() {
+    const audio = document.getElementById('musica');
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+
+  // Fade-in effect on scroll
+  const faders = document.querySelectorAll('.fade-section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
-    };
+    });
+  }, { threshold: 0.1 });
 
-    function respuestaPregunta(numero, si){
-      alert(respuestas[numero][si]);
-    }
-  </script>
+  faders.forEach(section => {
+    observer.observe(section);
+  });
+</script>
 
 </body>
 </html>
